@@ -1,0 +1,6 @@
+{
+  "name": "FP AQUAFARM",
+  "description": "Responsive marketing website for FP AQUAFARM, an eco-conscious aquaculture farm raising premium fish, crab, and shrimp with sustainable coastal practices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
