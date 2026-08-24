@@ -12,7 +12,7 @@ interface HeroSectionProps {
 export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry }) => {
   const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement | null>(null);
-  const [isMuted, setIsMuted] = useState(false);
+  const [isMuted, setIsMuted] = useState(true);
 
   // Ensure video autoplays smoothly
   useEffect(() => {
