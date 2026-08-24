@@ -77,14 +77,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
           </div>
 
           <div className="flex items-center space-x-4">
-            <button
-              onClick={onOpenVideoGuide}
-              className="text-[11px] text-blue-200 hover:text-white flex items-center gap-1.5 font-bold uppercase tracking-wider transition-colors"
-            >
-              <Sparkles className="w-3 h-3 text-teal-400" />
-              Media Guide
-            </button>
-            <span className="text-blue-400/40">|</span>
+
             <span className="text-teal-300 font-bold uppercase tracking-widest text-[10px]">GAP & HACCP Certified</span>
           </div>
         </div>
@@ -238,15 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
               >
                 Request Price Sheet & Samples
               </button>
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenVideoGuide();
-                }}
-                className="w-full text-center text-[11px] font-bold uppercase tracking-wider text-slate-600 py-2 hover:text-blue-900"
-              >
-                📹 Media & Video Integration Guide
-              </button>
+
             </div>
           </div>
         )}
