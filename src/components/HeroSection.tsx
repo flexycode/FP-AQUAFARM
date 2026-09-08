@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onOpenInquiry }) => {
           className="relative mb-7 group cursor-pointer"
           onClick={() => window.scrollTo({ top: 650, behavior: 'smooth' })}
         >
-          <div className="relative bg-white rounded-full p-2 sm:p-3 shadow-2xl border-2 border-blue-900 ring-4 ring-white/20 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
+          <div className="relative bg-white dark:bg-slate-800 rounded-full p-2 sm:p-3 shadow-2xl border-2 border-blue-900 ring-4 ring-white/20 transition-transform duration-300 group-hover:scale-105 flex items-center justify-center">
             <FPLogo className="w-28 h-28 sm:w-36 sm:h-36 md:w-40 md:h-40" />
           </div>
           {/* Subtle Geometric Badge */}

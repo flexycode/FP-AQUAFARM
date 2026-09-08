@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
           {/* Col 1: Brand Emblem & Bio */}
           <div className="lg:col-span-4 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-white rounded-full p-1 shadow-md flex-shrink-0 border border-slate-200">
+              <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-full p-1 shadow-md flex-shrink-0 border border-slate-200 dark:border-slate-700">
                 <FPLogo variant="colored" showText={false} className="w-full h-full" />
               </div>
               <div>
@@ -55,12 +55,12 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-1.5">
                 <MapPin className="w-3.5 h-3.5 text-teal-400 flex-shrink-0" />
                 <a
-                  href="https://maps.app.goo.gl/wAcXiRwjhGxEJjTE8"
+                  href="https://www.google.com/maps/place/Santa+Teresita,+Cagayan"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-white underline"
                 >
-                  Minanga Weste, Buguey, Cagayan
+                  Santa Teresita, Cagayan
                 </a>
               </div>
               <div className="flex items-center gap-1.5">
@@ -68,7 +68,7 @@ export const Footer: React.FC = () => {
                 <a href="mailto:orders@fpaquafarm.com" className="hover:text-white">
                   orders@fpaquafarm.com
                 </a>
-                <span className="text-slate-600">|</span>
+                <span className="text-slate-600 dark:text-slate-400">|</span>
                 <a href="mailto:ftpiano28@gmail.com" className="hover:text-white">
                   ftpiano28@gmail.com
                 </a>

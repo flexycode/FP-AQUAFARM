@@ -39,7 +39,7 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative max-w-xl w-full bg-white rounded-sm overflow-hidden shadow-2xl border border-slate-200 my-8"
+        className="relative max-w-xl w-full bg-white dark:bg-slate-800 rounded-sm overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700 my-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Modal Header */}
@@ -52,7 +52,7 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
           </button>
 
           <div className="flex items-center gap-3.5">
-            <div className="w-12 h-12 bg-white rounded-sm p-1 shadow-md border border-slate-200">
+            <div className="w-12 h-12 bg-white dark:bg-slate-800 rounded-sm p-1 shadow-md border border-slate-200 dark:border-slate-700">
               <FPLogo variant="colored" showText={false} className="w-full h-full" />
             </div>
             <div>
@@ -73,13 +73,13 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
               <div className="w-14 h-14 bg-teal-100 text-teal-700 rounded-sm flex items-center justify-center mx-auto border border-teal-200">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h4 className="text-2xl font-extrabold text-blue-900 font-outfit uppercase">
+              <h4 className="text-2xl font-extrabold text-blue-900 dark:text-blue-200 font-outfit uppercase">
                 Quote Request Submitted
               </h4>
-              <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto font-normal">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 max-w-md mx-auto font-normal">
                 Thank you, <strong>{name}</strong>. Our harvest manager will contact you at{' '}
                 <strong>{email}</strong> or <strong>{phone}</strong> with the current live pond pricing for{' '}
-                <strong className="text-blue-900">{selectedProduct}</strong>.
+                <strong className="text-blue-900 dark:text-blue-200">{selectedProduct}</strong>.
               </p>
               <button
                 onClick={onClose}
@@ -92,7 +92,7 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                  <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                     Your Name *
                   </label>
                   <input
@@ -101,12 +101,12 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     placeholder="e.g. John Santos"
-                    className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                  <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                     Business / Restaurant
                   </label>
                   <input
@@ -114,14 +114,14 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
                     value={business}
                     onChange={(e) => setBusiness(e.target.value)}
                     placeholder="e.g. Blue Fin Eatery"
-                    className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                  <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                     Email *
                   </label>
                   <input
@@ -130,12 +130,12 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="john@example.com"
-                    className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                  <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                     Phone / WhatsApp *
                   </label>
                   <input
@@ -144,19 +144,19 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
                     value={phone}
                     onChange={(e) => setPhone(e.target.value)}
                     placeholder="+1 (555) 000-0000"
-                    className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
+                    className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                   Product Line
                 </label>
                 <select
                   value={selectedProduct}
                   onChange={(e) => setSelectedProduct(e.target.value)}
-                  className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-white"
+                  className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-white dark:bg-slate-800"
                 >
                   <option value="Mixed Harvest">All Harvest (Fish, Crab & Shrimp)</option>
                   <option value="Premium Coastal Fish">Premium Coastal Fish (Barramundi / Grouper)</option>
@@ -167,13 +167,13 @@ export const WholesaleInquiryModal: React.FC<WholesaleInquiryModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-[10px] font-bold text-slate-700 uppercase tracking-widest mb-1">
+                <label className="block text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest mb-1">
                   Estimated Weekly Volume
                 </label>
                 <select
                   value={volume}
                   onChange={(e) => setVolume(e.target.value)}
-                  className="w-full px-3 py-2 rounded-sm border border-slate-300 text-xs text-slate-900 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-white"
+                  className="w-full px-3 py-2 rounded-sm border border-slate-300 dark:border-slate-600 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-blue-900 focus:ring-1 focus:ring-blue-900 bg-white dark:bg-slate-800"
                 >
                   <option value="Sample Pack (10kg - 25kg)">Sample Pack (10kg - 25kg)</option>
                   <option value="50kg - 100kg / weekly">50kg - 100kg / weekly</option>

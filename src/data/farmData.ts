@@ -1,4 +1,4 @@
-import { Product, ProcessStep, SustainabilityMetric, GalleryItem } from '../types';
+import { Product, ProcessStep, SustainabilityMetric, GalleryItem, FarmVideo } from '../types';
 
 export const FARM_PRODUCTS: Product[] = [
   {
@@ -334,5 +334,54 @@ export const FAQS = [
     question: 'What feeds do you use for your fish, crab, and shrimp?',
     answer:
       'We use high-grade sustainable fishmeal-reduced formulations enriched with natural spirulina, marine phospholipids, and live-cultured microalgae. Absolutely no mammalian by-products or growth hormone stimulants are ever used.',
+  },
+];
+
+export const HARVEST_VIDEOS: FarmVideo[] = [
+  {
+    id: 'hv-1',
+    title: 'Mud Crab Harvest & Grading',
+    description:
+      'Watch our team hand-sort pond-fattened mud crabs, verifying carapace firmness and claw density before packing in breathable live-cargo crates for dispatch.',
+    videoUrl: '/videos/harvesting/harvest-video-1.mp4',
+    duration: '0:58',
+    tag: 'Live Harvest',
+  },
+  {
+    id: 'hv-2',
+    title: 'Tiger Prawn Night Sluice',
+    description:
+      'Night-time gravity sluice harvest of tiger prawns into sub-zero seawater ice slurry, locking in crispness and natural dark banding within seconds.',
+    videoUrl: '/videos/harvesting/harvest-video-2.mp4',
+    duration: '1:01',
+    tag: 'Cold-Chain Harvest',
+  },
+  {
+    id: 'hv-3',
+    title: 'Fish Sorting & Rapid Packing',
+    description:
+      'Barramundi and grouper are optical-weighed, hand-inspected for firmness, then packed in temperature-logged ice containers for same-day dispatch.',
+    videoUrl: '/videos/harvesting/harvest-video-3.mp4',
+    duration: '0:50',
+    tag: 'Fresh Packing',
+  },
+];
+
+export const POND_VIDEOS: FarmVideo[] = [
+  {
+    id: 'pv-1',
+    title: 'Coastal Ponds Overview',
+    description: 'Aerial view of our aerated bio-secure coastal ponds where saltwater fish and shrimp are raised.',
+    videoUrl: '/videos/fish-pond/pond-video-1.mp4',
+    duration: '0:14',
+    tag: 'Farm Ponds',
+  },
+  {
+    id: 'pv-2',
+    title: 'Water Aeration System',
+    description: 'High-efficiency paddlewheel aerators simulating pristine ocean currents and maintaining oxygen levels.',
+    videoUrl: '/videos/fish-pond/pond-video-2.mp4',
+    duration: '0:20',
+    tag: 'Bio-Secure',
   },
 ];

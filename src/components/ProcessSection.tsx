@@ -68,7 +68,7 @@ export const ProcessSection: React.FC = () => {
                 <div className="flex items-center justify-between mb-3">
                   <span
                     className={`w-7 h-7 rounded-sm flex items-center justify-center font-bold text-xs ${
-                      isSelected ? 'bg-teal-400 text-slate-900 font-extrabold' : 'bg-slate-700 text-slate-300'
+                      isSelected ? 'bg-teal-400 text-slate-900 dark:text-slate-100 font-extrabold' : 'bg-slate-700 text-slate-300'
                     }`}
                   >
                     0{step.step}

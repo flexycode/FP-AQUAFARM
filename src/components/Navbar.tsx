@@ -101,7 +101,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
               <FPLogo variant="colored" showText={false} className="w-full h-full" />
             </div>
             <div className="flex flex-col">
-              <span className="font-extrabold text-lg sm:text-xl tracking-widest text-blue-900 dark:text-white font-outfit uppercase leading-tight group-hover:text-blue-800 transition-colors">
+              <span className="font-extrabold text-lg sm:text-xl tracking-widest text-blue-900 dark:text-white font-outfit uppercase leading-tight group-hover:text-blue-800 dark:text-blue-300 transition-colors">
                 FP AQUAFARM
               </span>
               <span className="text-[10px] font-bold text-blue-700 dark:text-blue-400 tracking-wider uppercase">
@@ -121,7 +121,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
                   className={`py-2 transition-colors relative ${
                     isActive
                       ? 'text-blue-900 dark:text-teal-400 font-extrabold'
-                      : 'text-blue-900/60 dark:text-slate-400 hover:text-blue-900 dark:hover:text-white'
+                      : 'text-blue-900/60 dark:text-slate-400 hover:text-blue-900 dark:text-blue-200 dark:hover:text-white'
                   }`}
                 >
                   {link.name}
@@ -137,7 +137,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={toggleLanguage}
-              className="p-2 text-slate-600 hover:text-blue-900 dark:text-slate-300 dark:hover:text-white flex items-center gap-1 text-[10px] font-bold uppercase transition-colors"
+              className="p-2 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:text-slate-300 dark:hover:text-white flex items-center gap-1 text-[10px] font-bold uppercase transition-colors"
               aria-label="Toggle language"
             >
               <Globe className="w-4 h-4" />
@@ -145,14 +145,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
             </button>
             <button
               onClick={toggleTheme}
-              className="p-2 text-slate-600 hover:text-blue-900 dark:text-slate-300 dark:hover:text-white transition-colors"
+              className="p-2 text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:text-slate-300 dark:hover:text-white transition-colors"
               aria-label="Toggle theme"
             >
               {theme === 'light' ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
             </button>
             <a
               href="#products"
-              className="text-[11px] font-bold uppercase tracking-widest text-blue-900 dark:text-blue-200 hover:text-blue-800 dark:hover:text-white px-4 py-2.5 border border-slate-200 dark:border-slate-700 hover:border-blue-900 dark:hover:border-blue-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all rounded-sm"
+              className="text-[11px] font-bold uppercase tracking-widest text-blue-900 dark:text-blue-200 hover:text-blue-800 dark:text-blue-300 dark:hover:text-white px-4 py-2.5 border border-slate-200 dark:border-slate-700 hover:border-blue-900 dark:hover:border-blue-300 hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800 transition-all rounded-sm"
             >
               Our Products
             </a>
@@ -187,7 +187,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-700 hover:text-blue-900 hover:bg-slate-100 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-900"
+              className="p-2 text-slate-700 dark:text-slate-300 hover:text-blue-900 dark:text-blue-200 hover:bg-slate-100 dark:bg-slate-800/80 rounded-sm focus:outline-none focus:ring-1 focus:ring-blue-900"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -203,7 +203,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
                 <FPLogo variant="colored" showText={false} className="w-full h-full" />
               </div>
               <div>
-                <div className="font-extrabold text-blue-900 text-sm uppercase tracking-wider">FP AQUAFARM</div>
+                <div className="font-extrabold text-blue-900 dark:text-blue-200 text-sm uppercase tracking-wider">FP AQUAFARM</div>
                 <div className="text-[10px] text-blue-700 uppercase tracking-tight font-semibold">Sustainable Maritime Cultivation</div>
               </div>
             </div>
@@ -214,14 +214,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenInquiry, onOpenVideoGuide 
                   key={link.name}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="block px-3 py-2 text-xs font-bold uppercase tracking-widest text-slate-800 dark:text-slate-200 hover:text-blue-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                  className="block px-3 py-2 text-xs font-bold uppercase tracking-widest text-slate-800 dark:text-slate-200 hover:text-blue-900 dark:text-blue-200 dark:hover:text-white hover:bg-slate-50 dark:bg-slate-900 dark:hover:bg-slate-800 transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
             </div>
 
-            <div className="pt-3 border-t border-slate-100 flex flex-col gap-2">
+            <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex flex-col gap-2">
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
