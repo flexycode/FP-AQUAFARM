@@ -35,7 +35,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       onClick={onClose}
     >
       <div
-        className="relative max-w-2xl w-full bg-white rounded-sm overflow-hidden shadow-2xl border border-slate-200 my-8"
+        className="relative max-w-2xl w-full bg-white dark:bg-slate-800 rounded-sm overflow-hidden shadow-2xl border border-slate-200 dark:border-slate-700 my-8"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Ribbon */}
@@ -55,7 +55,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </button>
 
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 rounded-sm bg-white p-2 shadow-md flex items-center justify-center flex-shrink-0 border border-slate-200">
+            <div className="w-14 h-14 rounded-sm bg-white dark:bg-slate-800 p-2 shadow-md flex items-center justify-center flex-shrink-0 border border-slate-200 dark:border-slate-700">
               {getAnimalIcon(product.category)}
             </div>
             <div>
@@ -80,20 +80,20 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             <h4 className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5 font-outfit">
               Cultivation & Flavor Profile
             </h4>
-            <p className="text-xs sm:text-sm text-slate-700 leading-relaxed font-normal">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
               {product.description}
             </p>
           </div>
 
           {/* Nutritional Highlights Grid */}
-          <div className="grid grid-cols-3 gap-3 p-4 bg-slate-50 rounded-sm border border-slate-200 text-center">
+          <div className="grid grid-cols-3 gap-3 p-4 bg-slate-50 dark:bg-slate-900 rounded-sm border border-slate-200 dark:border-slate-700 text-center">
             <div>
               <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Lean Protein</div>
-              <div className="text-base sm:text-lg font-extrabold text-blue-900 font-outfit mt-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-blue-900 dark:text-blue-200 font-outfit mt-0.5">
                 {product.nutritionHighlights.protein}
               </div>
             </div>
-            <div className="border-x border-slate-200">
+            <div className="border-x border-slate-200 dark:border-slate-700">
               <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Omega-3 Oils</div>
               <div className="text-base sm:text-lg font-extrabold text-teal-700 font-outfit mt-0.5">
                 {product.nutritionHighlights.omega3}
@@ -101,7 +101,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             </div>
             <div>
               <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wider">Caloric Density</div>
-              <div className="text-base sm:text-lg font-extrabold text-slate-800 font-outfit mt-0.5">
+              <div className="text-base sm:text-lg font-extrabold text-slate-800 dark:text-slate-200 font-outfit mt-0.5">
                 {product.nutritionHighlights.calories}
               </div>
             </div>
@@ -117,7 +117,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {product.sizes.map((sz, idx) => (
                 <div
                   key={idx}
-                  className="p-2.5 rounded-sm bg-white border border-slate-200 text-xs font-medium text-slate-700 flex items-center gap-2"
+                  className="p-2.5 rounded-sm bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-xs font-medium text-slate-700 dark:text-slate-300 flex items-center gap-2"
                 >
                   <span className="w-1.5 h-1.5 bg-teal-600"></span>
                   <span>{sz}</span>
@@ -136,7 +136,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
               {product.packaging.map((pkg, idx) => (
                 <div
                   key={idx}
-                  className="flex items-start gap-2.5 text-xs text-slate-600 font-normal"
+                  className="flex items-start gap-2.5 text-xs text-slate-600 dark:text-slate-400 font-normal"
                 >
                   <CheckCircle2 className="w-3.5 h-3.5 text-teal-600 flex-shrink-0 mt-0.5" />
                   <span>{pkg}</span>
@@ -146,19 +146,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           </div>
 
           {/* Bio-Security & Traceability Note */}
-          <div className="p-3.5 bg-blue-50/80 rounded-sm border border-blue-200/80 text-xs text-slate-700 flex items-center gap-3">
-            <ShieldCheck className="w-4 h-4 text-blue-900 flex-shrink-0" />
+          <div className="p-3.5 bg-blue-50/80 rounded-sm border border-blue-200/80 text-xs text-slate-700 dark:text-slate-300 flex items-center gap-3">
+            <ShieldCheck className="w-4 h-4 text-blue-900 dark:text-blue-200 flex-shrink-0" />
             <div className="font-normal">
-              <strong className="text-blue-900">Lot Traceability:</strong> Every batch is issued an encrypted QR certificate detailing hatch date, pond biofloc readings, and sub-zero slurry timestamp.
+              <strong className="text-blue-900 dark:text-blue-200">Lot Traceability:</strong> Every batch is issued an encrypted QR certificate detailing hatch date, pond biofloc readings, and sub-zero slurry timestamp.
             </div>
           </div>
         </div>
 
         {/* Footer Actions */}
-        <div className="p-5 bg-slate-50 border-t border-slate-200 flex flex-col sm:flex-row gap-3">
+        <div className="p-5 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 flex flex-col sm:flex-row gap-3">
           <button
             onClick={onClose}
-            className="flex-1 py-2.5 px-4 rounded-sm border border-slate-300 text-slate-700 hover:bg-slate-100 font-bold text-[11px] uppercase tracking-widest transition-colors cursor-pointer"
+            className="flex-1 py-2.5 px-4 rounded-sm border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:bg-slate-800/80 font-bold text-[11px] uppercase tracking-widest transition-colors cursor-pointer"
           >
             Close Sheet
           </button>

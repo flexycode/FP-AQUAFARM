@@ -1,6 +1,6 @@
 # FP AQUAFARM 🌊🦀
 
-> Premium, sustainable aquaculture from the coastal estuary basins of Minanga Weste, Buguey, Cagayan.
+> Premium, sustainable aquaculture from the coastal estuary basins of Santa Teresita, Cagayan.
 
 Welcome to the official web platform for **FP AQUAFARM**. This application serves as the digital storefront and informational hub for our aquaculture operations, showcasing our premium seafood harvests, bio-secure farming practices, and wholesale contact channels.
 
@@ -43,8 +43,9 @@ To run this project locally, follow these steps:
    ```
 
 ## 📍 Location & Contact
-- **Headquarters**: Minanga Weste, Buguey, Cagayan
-- **Google Maps**: [View FP AQUAFARM Ponds](https://maps.app.goo.gl/wAcXiRwjhGxEJjTE8)
+- **Headquarters**: Santa Teresita, Cagayan
+- **Certifications**: HACCP, GAP (Good Aquaculture Practice)
+- **Google Maps**: [View FP AQUAFARM Ponds](https://www.google.com/maps/place/Santa+Teresita,+Cagayan)
 - **Orders**: orders@fpaquafarm.com
 - **Wholesale Inquiries**: wholesale@fpaquafarm.com
 - **Direct Contact**: ftpiano28@gmail.com

@@ -40,7 +40,7 @@ export default function App() {
   return (
     <ThemeProvider>
       <LanguageProvider>
-        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-[#1E3A8A] selection:text-white transition-colors duration-300">
+        <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-100 flex flex-col font-sans selection:bg-[#1E3A8A] selection:text-white transition-colors duration-300 overflow-x-hidden">
           {/* Navigation Bar */}
           <Navbar
             onOpenInquiry={handleOpenInquiry}

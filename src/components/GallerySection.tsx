@@ -1,11 +1,115 @@
-import React, { useState } from 'react';
-import { GALLERY_ITEMS } from '../data/farmData';
-import { GalleryItem } from '../types';
-import { Camera, Eye, X, ChevronLeft, ChevronRight, Image as ImageIcon, HelpCircle } from 'lucide-react';
+import React, { useState, useRef, useCallback } from 'react';
+import { GALLERY_ITEMS, HARVEST_VIDEOS, POND_VIDEOS } from '../data/farmData';
+import { GalleryItem, FarmVideo } from '../types';
+import { Camera, Eye, X, ChevronLeft, ChevronRight, Image as ImageIcon, HelpCircle, Video, Play, Pause, Clock } from 'lucide-react';
 
 interface GallerySectionProps {
   onOpenVideoGuide: () => void;
 }
+
+/**
+ * Individual video card with autoplay, muted loop, and play/pause toggle.
+ * Handles video loading states gracefully when files aren't yet present.
+ */
+const FarmVideoCard: React.FC<{ video: FarmVideo }> = ({ video }) => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [hasError, setHasError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const togglePlay = useCallback(() => {
+    if (!videoRef.current) return;
+    if (videoRef.current.paused) {
+      videoRef.current.play().catch(() => {});
+      setIsPlaying(true);
+    } else {
+      videoRef.current.pause();
+      setIsPlaying(false);
+    }
+  }, []);
+
+  return (
+    <div className="group relative h-72 sm:h-80 rounded-sm overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 cursor-pointer border border-slate-200 dark:border-slate-700 bg-slate-900">
+      {/* Video Element or Fallback */}
+      {!hasError ? (
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted
+          playsInline
+          onLoadedData={() => setIsLoaded(true)}
+          onError={() => setHasError(true)}
+          className={`w-full h-full object-cover transition-all duration-500 group-hover:scale-105 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        >
+          <source src={video.videoUrl} type="video/mp4" />
+        </video>
+      ) : (
+        /* Elegant fallback when video file is not yet available */
+        <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-800 via-blue-950 to-slate-900 text-center px-6">
+          <div className="w-16 h-16 rounded-full bg-blue-900/60 border border-blue-700/50 flex items-center justify-center mb-4">
+            <Video className="w-7 h-7 text-teal-400" />
+          </div>
+          <p className="text-xs font-bold text-white uppercase tracking-wider font-outfit">{video.title}</p>
+          <p className="text-[10px] text-slate-400 mt-2 leading-relaxed max-w-[240px]">
+            Video coming soon — drop your MP4 file into <code className="text-teal-400 font-mono">{video.videoUrl}</code>
+          </p>
+        </div>
+      )}
+
+      {/* Loading skeleton pulse */}
+      {!isLoaded && !hasError && (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-800 via-blue-950 to-slate-900 animate-pulse flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-blue-900/60 border border-blue-700/50 flex items-center justify-center">
+            <Video className="w-5 h-5 text-teal-400 animate-pulse" />
+          </div>
+        </div>
+      )}
+
+      {/* Dark gradient overlay — always visible */}
+      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity pointer-events-none"></div>
+
+      {/* Tag Badge — top left */}
+      <div className="absolute top-3.5 left-3.5 z-10">
+        <span className="bg-blue-950 text-teal-300 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-blue-800 shadow-xs">
+          {video.tag}
+        </span>
+      </div>
+
+      {/* Play/Pause Toggle — center, appears on hover */}
+      {!hasError && isLoaded && (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            togglePlay();
+          }}
+          className="absolute inset-0 z-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 cursor-pointer"
+          aria-label={isPlaying ? 'Pause video' : 'Play video'}
+        >
+          <div className="w-14 h-14 rounded-full bg-black/60 hover:bg-black/80 backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 hover:scale-110">
+            {isPlaying ? (
+              <Pause className="w-6 h-6 text-white" />
+            ) : (
+              <Play className="w-6 h-6 text-white ml-0.5" />
+            )}
+          </div>
+        </button>
+      )}
+
+      {/* Title & Description — bottom overlay */}
+      <div className="absolute bottom-3.5 left-3.5 right-3.5 text-white z-10">
+        <h4 className="text-sm sm:text-base font-extrabold uppercase font-outfit group-hover:text-teal-300 transition-colors">
+          {video.title}
+        </h4>
+        <p className="text-[11px] text-slate-300 mt-1 line-clamp-2 leading-relaxed font-normal">
+          {video.description}
+        </p>
+      </div>
+    </div>
+  );
+};
 
 export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide }) => {
   const [activeFilter, setActiveFilter] = useState<'all' | 'ponds' | 'harvest' | 'nursery' | 'processing'>('all');
@@ -31,7 +135,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
   };
 
   return (
-    <section id="gallery" className="py-24 bg-white relative">
+    <section id="gallery" className="py-24 bg-white dark:bg-slate-800 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -40,15 +144,15 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
             <Camera className="w-3.5 h-3.5 text-teal-600" />
             Visual Tour
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-900 font-outfit tracking-tight uppercase">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-blue-900 dark:text-blue-200 font-outfit tracking-tight uppercase">
             Inside FP AQUAFARM
           </h2>
-          <p className="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+          <p className="mt-4 text-sm sm:text-base text-slate-600 dark:text-slate-400 leading-relaxed font-normal">
             Take a look across our aerated bio-secure coastal ponds, clean indoor hatchery, and climate-controlled packing facilities.
           </p>
 
           {/* Filter Pills with Geometric Structure */}
-          <div className="mt-8 flex flex-wrap justify-center gap-1.5 p-1 bg-slate-100 border border-slate-200 rounded-sm inline-flex">
+          <div className="mt-8 flex flex-wrap justify-center gap-1.5 p-1 bg-slate-100 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700 rounded-sm inline-flex">
             {[
               { id: 'all', label: 'All Photos' },
               { id: 'ponds', label: 'Coastal Ponds' },
@@ -61,8 +165,8 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
                 onClick={() => setActiveFilter(f.id as any)}
                 className={`px-4 py-2 rounded-sm text-[11px] font-bold uppercase tracking-wider transition-all cursor-pointer ${
                   activeFilter === f.id
-                    ? 'bg-white text-blue-900 shadow-sm border border-slate-200/80 font-extrabold'
-                    : 'text-slate-600 hover:text-blue-900'
+                    ? 'bg-white dark:bg-slate-800 text-blue-900 dark:text-blue-200 shadow-sm border border-slate-200/80 font-extrabold'
+                    : 'text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:text-blue-200'
                 }`}
               >
                 {f.label}
@@ -77,7 +181,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
             <div
               key={item.id}
               onClick={() => setSelectedPhoto(item)}
-              className="group relative h-72 sm:h-80 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border border-slate-200 bg-slate-100"
+              className="group relative h-72 sm:h-80 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer border border-slate-200 dark:border-slate-700 bg-slate-100 dark:bg-slate-800/80"
             >
               <img
                 src={item.imageUrl}
@@ -91,7 +195,7 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
 
               {/* Tag Pill on Top */}
               <div className="absolute top-3.5 left-3.5">
-                <span className="bg-white text-blue-900 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-slate-200 shadow-xs">
+                <span className="bg-white dark:bg-slate-800 text-blue-900 dark:text-blue-200 text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 border border-slate-200 dark:border-slate-700 shadow-xs">
                   {item.tag}
                 </span>
               </div>
@@ -113,29 +217,58 @@ export const GallerySection: React.FC<GallerySectionProps> = ({ onOpenVideoGuide
           ))}
         </div>
 
-        {/* Instructions banner for replacing gallery photos */}
-        <div className="mt-12 bg-slate-50 border border-slate-200 rounded-sm p-4 sm:p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-sm bg-blue-100 text-blue-900 flex items-center justify-center flex-shrink-0">
-              <ImageIcon className="w-5 h-5" />
+        {/* ─── Live Harvest Video Footage Section ─── */}
+        {HARVEST_VIDEOS.length > 0 && (
+          <div className="mt-16">
+            {/* Section Sub-Header */}
+            <div className="text-center max-w-3xl mx-auto mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-950 text-teal-300 text-[10px] font-bold uppercase tracking-[0.25em] mb-4 border border-blue-800">
+                <Video className="w-3.5 h-3.5 text-teal-400" />
+                Live Harvest Footage
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-blue-900 dark:text-blue-200 font-outfit tracking-tight uppercase">
+                Watch Our Harvest in Action
+              </h3>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal max-w-2xl mx-auto">
+                Experience the precision and care of our harvesting operations — from night-time prawn sluicing to hand-grading live mud crabs.
+                All videos play simultaneously for an immersive look inside FP AQUAFARM.
+              </p>
             </div>
-            <div>
-              <div className="text-xs sm:text-sm font-bold text-slate-900 uppercase">
-                Farm Owner Note: Ready to insert your own farm photos?
-              </div>
-              <div className="text-xs text-slate-500 font-normal">
-                You can easily add your high-res drone shots and pond photography.
-              </div>
+
+            {/* Video Cards Grid — 3 columns on desktop, stacks on mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {HARVEST_VIDEOS.map((video) => (
+                <FarmVideoCard key={video.id} video={video} />
+              ))}
             </div>
           </div>
-          <button
-            onClick={onOpenVideoGuide}
-            className="text-[10px] font-bold uppercase tracking-widest text-blue-900 hover:bg-slate-100 bg-white border border-slate-300 px-4 py-2.5 rounded-sm transition-colors flex items-center gap-1.5 cursor-pointer flex-shrink-0"
-          >
-            <span>Media Replacement Guide</span>
-            <HelpCircle className="w-3.5 h-3.5 text-teal-600" />
-          </button>
-        </div>
+        )}
+
+        {/* ─── Coastal Ponds Video Footage Section ─── */}
+        {POND_VIDEOS.length > 0 && (
+          <div className="mt-16">
+            {/* Section Sub-Header */}
+            <div className="text-center max-w-3xl mx-auto mb-8">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-teal-950 text-teal-300 text-[10px] font-bold uppercase tracking-[0.25em] mb-4 border border-teal-800">
+                <Video className="w-3.5 h-3.5 text-teal-400" />
+                Coastal Ponds Overview
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-blue-900 dark:text-blue-200 font-outfit tracking-tight uppercase">
+                Explore Our Bio-Secure Ponds
+              </h3>
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-normal max-w-2xl mx-auto">
+                Get a glimpse of our pristine saltwater flow-through ponds where we cultivate premium seafood with zero antibiotics.
+              </p>
+            </div>
+
+            {/* Video Cards Grid — 2 columns on desktop, stacks on mobile */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {POND_VIDEOS.map((video) => (
+                <FarmVideoCard key={video.id} video={video} />
+              ))}
+            </div>
+          </div>
+        )}
 
       </div>
 

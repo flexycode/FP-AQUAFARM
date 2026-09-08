@@ -94,7 +94,7 @@ export const VideoGuideModal: React.FC<VideoGuideModalProps> = ({ isOpen, onClos
               <span>3. Provided Brand Logos Status</span>
             </div>
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-sm p-1 shadow border border-slate-200">
+              <div className="w-10 h-10 bg-white dark:bg-slate-800 rounded-sm p-1 shadow border border-slate-200 dark:border-slate-700">
                 <FPLogo variant="colored" showText={false} className="w-full h-full" />
               </div>
               <p className="text-xs text-slate-300 font-normal">

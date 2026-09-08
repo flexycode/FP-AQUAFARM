@@ -49,6 +49,16 @@ export interface GalleryItem {
   tag: string;
 }
 
+export interface FarmVideo {
+  id: string;
+  title: string;
+  description: string;
+  videoUrl: string;
+  posterUrl?: string;
+  duration: string;
+  tag: string;
+}
+
 export interface InquiryFormData {
   fullName: string;
   companyName: string;
